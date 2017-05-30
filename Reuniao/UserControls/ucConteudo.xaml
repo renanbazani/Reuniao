@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Reuniao.ucConteudo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Background="Black"
+             Loaded="ucConteudo_Loaded">
+    <Grid>
+
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="cmMenu">
+                <MenuItem x:Name="miRetrocederSequencia" Header="Retroceder Sequência" Click="miRetrocederSequencia_Click"/>
+                <MenuItem x:Name="miAvancarSequencia" Header="Avançar Sequência" Click="miAvancarSequencia_Click"/>
+                <Separator />
+                <MenuItem x:Name="miAlterarConteudo" Header="Alterar" Click="miAlterarConteudo_Click"/>
+                <MenuItem x:Name="miExcluirConteudo" Header="Excluir" Click="miExcluirConteudo_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+        <!-- Imagens -->
+        <Grid x:Name="gridImagem" Visibility="Hidden">
+            <Image x:Name="ibImagem" Stretch="Uniform" Source="..\Imagens\Thumbs\imgInvalida.png"></Image>
+        </Grid>
+        <!-- Imagens -->
+
+        <!-- Cantico -->
+        <Grid x:Name="gridCantico" Visibility="Hidden">
+            <Image x:Name="canticoWatermark" Source="..\Imagens\Thumbs\watermark.png" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,35" Opacity="0.4"></Image>
+            <MediaElement x:Name="meCantico" Visibility="Hidden" Stretch="Uniform" />
+        </Grid>
+
+        <Border x:Name="gridCanticoThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
+            <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="..\Imagens\Thumbs\Cantico.jpg" Stretch="UniformToFill"></ImageBrush>
+                </Grid.Background>
+                <Viewbox Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbNumeroThummb" FontFamily="Palatino Linotype" FontWeight="Bold" Foreground="White"  />
+                </Viewbox>
+                <Viewbox x:Name="vbCantico" Visibility="Collapsed" Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <ComboBox x:Name="cbCantico" FontFamily="Palatino Linotype" FontWeight="SemiBold" />
+                </Viewbox>
+            </Grid>
+        </Border>
+        <!-- Cantico -->
+
+        <!-- Video -->
+        <Grid x:Name="gridVideo" Visibility="Hidden">
+            <Image x:Name="videoWatermark" Source="..\Imagens\Thumbs\watermark.png" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,35" Opacity="0.4"></Image>
+            <MediaElement x:Name="meVideo" Visibility="Hidden" Stretch="Uniform" />
+        </Grid>
+
+        <Border x:Name="gridVideoThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
+            <Grid>
+                <Image x:Name="videoThumb" Source="..\Imagens\Thumbs\Video.png" Stretch="Uniform" MaxHeight="200" MaxWidth="200"></Image>
+                <Image x:Name="videoThumbErro" Source="..\Imagens\Thumbs\videoInvalido.png" Stretch="UniformToFill" Visibility="Hidden"/>
+            </Grid>
+        </Border>
+        <!-- Video -->
+
+        <!-- Audio -->
+        <Border x:Name="gridAudioThumb" BorderBrush="LightGray" BorderThickness="1">
+            <Grid >
+                <Image x:Name="audioThumb" Source="..\Imagens\Thumbs\audio.png" Stretch="UniformToFill"></Image>
+                <Image x:Name="audioThumbErro" Source="..\Imagens\Thumbs\audioInvalido.png" Stretch="Uniform" MaxHeight="100" MaxWidth="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <MediaElement x:Name="meAudio" Visibility="Hidden" />
+            </Grid>
+        </Border>
+        <!-- Audio -->
+
+        <!-- Controle de Midia -->
+        <Grid x:Name="gridControleMidia" Visibility="Hidden">
+            <Grid Background="White" Opacity=".5" />
+            <Grid x:Name="gridBotoesMedia" VerticalAlignment="Top" HorizontalAlignment="Center" Height="20" Margin="5,10,0,5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Image x:Name="btnPlay" Source="..\Imagens/Play-icon.png" Stretch="UniformToFill" Grid.Column="0" MouseLeftButtonUp="btnPlay_MouseLeave" Cursor="Hand" Visibility="Collapsed"/>
+                <Image x:Name="btnPause" Source="..\Imagens/Pause-icon.png" Stretch="UniformToFill" Grid.Column="0" MouseLeftButtonUp="btnPause_MouseLeave" Cursor="Hand" Visibility="Collapsed"/>
+                <Image x:Name="btnStop" Source="..\Imagens/Stop-icon.png" Stretch="UniformToFill" Grid.Column="6" MouseLeftButtonUp="btnStop_MouseLeave" Cursor="Hand"  Visibility="Collapsed"/>
+            </Grid>
+            <ProgressBar x:Name="pbMedia" VerticalAlignment="Bottom" Height="10" Margin="2" Foreground="#FF1C73BA" BorderBrush="#FF176DB1" Visibility="Collapsed" />
+        </Grid>
+        <!-- Controle de Midia -->
+
+    </Grid>
+</UserControl>
