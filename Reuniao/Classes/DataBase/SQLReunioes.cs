@@ -54,6 +54,7 @@ namespace Reuniao.DataBase
                         Sequencia = int.Parse(row["Sequencia"].ToString()),
                         Tipo = row["Tipo"].ToString(),
                         Valor = row["Valor"].ToString(),
+                        Reproduzido = bool.Parse(row["Reproduzido"].ToString()),
                         UltimoNaSequencia = (count.ToString().Equals(row["Sequencia"].ToString()))
                     });
                 }
@@ -81,7 +82,7 @@ namespace Reuniao.DataBase
                 var chaveSeq = new SQLiteCommand("select ifnull(max(chave) + 1, 1) from reuniao", conn).ExecuteScalar();
                 var proxSeq = new SQLiteCommand(string.Format("select ifnull(max(Sequencia) + 1, 1) from reuniao where DataReuniao = date('{0}')", ((DateTime)objReuniao.DataReuniao).ToString("yyyy-MM-dd")), conn).ExecuteScalar();
 
-                new SQLiteCommand(string.Format("insert into reuniao values ({0}, {1}, '{2}', '{3}', '{4}')",
+                new SQLiteCommand(string.Format("insert into reuniao values ({0}, {1}, '{2}', '{3}', '{4}', 'false')",
                                                 chaveSeq.ToString(),
                                                 proxSeq.ToString(),
                                                 objReuniao.Tipo,
@@ -125,11 +126,12 @@ namespace Reuniao.DataBase
             {
                 SQLiteCommand comm = new SQLiteCommand(conn);
 
-                comm.CommandText = string.Format("update reuniao set DataReuniao = '{0}', Sequencia = {1}, Tipo = '{2}', Valor = '{3}' where Chave = {4}",
+                comm.CommandText = string.Format("update reuniao set DataReuniao = '{0}', Sequencia = {1}, Tipo = '{2}', Valor = '{3}', Reproduzido = '{4}' where Chave = {4}",
                                                 ((DateTime)objReuniao.DataReuniao).ToString("yyyy-MM-dd"),
                                                 objReuniao.Sequencia,
                                                 objReuniao.Tipo,
                                                 objReuniao.Valor,
+                                                objReuniao.Reproduzido.ToString(),
                                                 objReuniao.Chave);
 
                 if (conn.State == ConnectionState.Closed)

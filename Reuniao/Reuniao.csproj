@@ -163,7 +163,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Arquivos\Dados.sqlite">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Imagens\icon_proj.pdn" />
     <None Include="packages.config" />
@@ -193,6 +193,8 @@
     <Resource Include="Imagens\Thumbs\videoInvalido.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Imagens\assistido.png" />
+    <Resource Include="Imagens\Thumbs\check.png" />
     <Resource Include="Imagens\Thumbs\audio.png" />
     <Resource Include="Imagens\logo.png" />
     <Resource Include="Imagens\Thumbs\audioInvalido.png" />

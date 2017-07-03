@@ -9,6 +9,8 @@
 
         <Grid.ContextMenu>
             <ContextMenu x:Name="cmMenu">
+                <MenuItem x:Name="miMarcar" Header="Marcar como Reproduzido" Click="miMarcar_Click"/>
+                <Separator />
                 <MenuItem x:Name="miRetrocederSequencia" Header="Retroceder Sequência" Click="miRetrocederSequencia_Click"/>
                 <MenuItem x:Name="miAvancarSequencia" Header="Avançar Sequência" Click="miAvancarSequencia_Click"/>
                 <Separator />
@@ -59,7 +61,7 @@
         <!-- Video -->
 
         <!-- Audio -->
-        <Border x:Name="gridAudioThumb" BorderBrush="LightGray" BorderThickness="1">
+        <Border x:Name="gridAudioThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
             <Grid >
                 <Image x:Name="audioThumb" Source="..\Imagens\Thumbs\audio.png" Stretch="UniformToFill"></Image>
                 <Image x:Name="audioThumbErro" Source="..\Imagens\Thumbs\audioInvalido.png" Stretch="Uniform" MaxHeight="100" MaxWidth="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
@@ -89,5 +91,10 @@
         </Grid>
         <!-- Controle de Midia -->
 
+        <!-- Conteudo Reproduzido Info -->
+        <Grid x:Name="gridInfoReproduzido" Visibility="Hidden">
+            <Image Source="..\Imagens\assistido.png" Stretch="UniformToFill"></Image>
+        </Grid>
+        <!-- Conteudo Reproduzido Info -->
     </Grid>
 </UserControl>

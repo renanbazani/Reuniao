@@ -32,6 +32,20 @@ namespace Reuniao.DataBase
             set { valor = value; }
         }
 
+        private bool reproduzido = false;
+        public bool Reproduzido
+        {
+            get
+            {
+                return reproduzido;
+            }
+
+            set
+            {
+                reproduzido = value;
+            }
+        }
+
         private DateTime? dataReuniao = null;
         public DateTime? DataReuniao
         {

@@ -72,7 +72,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <local:ucConteudo TipoConteudo="{Binding Tipo, Converter={StaticResource conteudoReuniaoConverter}}" ValorConteudo="{Binding Valor}" Conteudo="{Binding}" ConteudoPrincipal="False" AvancarSequencia="ucConteudo_AvancarSequencia" RetrocederSequencia="ucConteudo_RetrocederSequencia" AlterarConteudo="ucConteudo_AlterarConteudo" ExcluirConteudo="ucConteudo_ExcluirConteudo"/>
+                            <local:ucConteudo TipoConteudo="{Binding Tipo, Converter={StaticResource conteudoReuniaoConverter}}" ValorConteudo="{Binding Valor}" Conteudo="{Binding}" ConteudoPrincipal="False" AvancarSequencia="ucConteudo_AvancarSequencia" RetrocederSequencia="ucConteudo_RetrocederSequencia" AlterarConteudo="ucConteudo_AlterarConteudo" ExcluirConteudo="ucConteudo_ExcluirConteudo" ConteudoAtualizado="ucConteudo_ConteudoAtualizado"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

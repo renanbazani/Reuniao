@@ -42,7 +42,6 @@ namespace Reuniao
             set { SetValue(TipoConteudoProperty, value); }
         }
 
-
         public static readonly DependencyProperty TipoConteudoProperty = DependencyProperty.Register("TipoConteudo", typeof(ConteudoReuniao), typeof(ucConteudo), new PropertyMetadata(ConteudoReuniao.NENHUM));
         public ConteudoReuniao TipoConteudo
         {
@@ -63,6 +62,7 @@ namespace Reuniao
         public event EventHandler ExcluirConteudo;
         public event EventHandler AvancarSequencia;
         public event EventHandler RetrocederSequencia;
+        public event EventHandler ConteudoAtualizado;
 
         #endregion
 
@@ -92,7 +92,9 @@ namespace Reuniao
                 }
 
                 string pathArquivo = string.Format(@"{0}\{1}.mp4", Helper.PathCanticos, numero);
-                
+
+                this.ToolTip = string.Format("Cântico {0}", numero);
+
                 if (this.ConteudoPrincipal)
                 {
                     gridCanticoThumb.Visibility = System.Windows.Visibility.Collapsed;
@@ -293,6 +295,13 @@ namespace Reuniao
                         break;
                     default:
                         break;
+                }
+
+                if (this.Conteudo.Reproduzido)
+                {
+                    this.gridInfoReproduzido.Visibility = Visibility.Visible;
+                    this.miMarcar.Header = "Marcar como 'Pendente'";
+                    this.MouseDoubleClick -= ucConteudo_MouseDoubleClick;
                 }
 
                 this.PopulaCombos();
@@ -577,5 +586,22 @@ namespace Reuniao
         #endregion
 
         #endregion
+
+        private void miMarcar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Conteudo.Reproduzido = !this.Conteudo.Reproduzido;
+
+                new SQLReunioes().Alterar(this.Conteudo);
+
+                if (this.ConteudoAtualizado != null)
+                    this.ConteudoAtualizado(this, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

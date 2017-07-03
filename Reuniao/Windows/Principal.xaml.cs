@@ -242,6 +242,19 @@ namespace Reuniao
             }
         }
 
+        private void ucConteudo_ConteudoAtualizado(object sender, EventArgs e)
+        {
+            try
+            {
+                var dataSelecionada = (DateTime)cbiDataReunioes.SelectedValue;
+                lvQuadros.ItemsSource = new SQLReunioes().Listar(dataSelecionada);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void ucConteudo_AlterarConteudo(object sender, EventArgs e)
         {
             try
