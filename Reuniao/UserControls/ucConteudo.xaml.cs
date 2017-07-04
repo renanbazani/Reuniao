@@ -374,6 +374,23 @@ namespace Reuniao
             }
         }
 
+        private void miMarcar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.Conteudo.Reproduzido = !this.Conteudo.Reproduzido;
+
+                new SQLReunioes().Alterar(this.Conteudo);
+
+                if (this.ConteudoAtualizado != null)
+                    this.ConteudoAtualizado(this, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void miAlterarConteudo_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -532,6 +549,9 @@ namespace Reuniao
                 pbMedia.Visibility = Visibility.Collapsed;
 
                 Helper.FecharConteudoAtivo();
+
+                if (MessageBox.Show("Deseja marcar o conteúdo como 'Transmitido'?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    miMarcar_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -576,6 +596,8 @@ namespace Reuniao
                 pbMedia.Visibility = Visibility.Collapsed;
 
                 Helper.FecharConteudoAtivo();
+
+                miMarcar_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -586,22 +608,5 @@ namespace Reuniao
         #endregion
 
         #endregion
-
-        private void miMarcar_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                this.Conteudo.Reproduzido = !this.Conteudo.Reproduzido;
-
-                new SQLReunioes().Alterar(this.Conteudo);
-
-                if (this.ConteudoAtualizado != null)
-                    this.ConteudoAtualizado(this, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
     }
 }

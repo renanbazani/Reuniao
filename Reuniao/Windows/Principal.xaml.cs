@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace Reuniao
 {
@@ -159,6 +160,9 @@ namespace Reuniao
                 if (result == true)
                 {
                     File.Copy(dlg.FileName, string.Format(@"{0}\{1}", Helper.PathVideos, Path.GetFileName(dlg.FileName)), true);
+
+                    //if (MessageBox.Show("Deseja inserir uma ?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    //    descricao = FileVersionInfo.GetVersionInfo(dlg.FileName).FileDescription;
 
                     new SQLReunioes().Adicionar(new DataBase.Reuniao()
                     {

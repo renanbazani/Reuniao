@@ -32,6 +32,20 @@ namespace Reuniao.DataBase
             set { valor = value; }
         }
 
+        private string descricao = string.Empty;
+        public string Descricao
+        {
+            get
+            {
+                return descricao;
+            }
+
+            set
+            {
+                descricao = value;
+            }
+        }
+
         private bool reproduzido = false;
         public bool Reproduzido
         {

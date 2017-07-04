@@ -89,6 +89,7 @@
             <Border x:Name="bdProgramacaoNaoDisponivel" Grid.Row="1" Margin="0,15,0,0" BorderBrush="LightGray" BorderThickness="1" Visibility="Collapsed">
                 <TextBlock HorizontalAlignment="Center" Margin="5" Foreground="Red" Text="Programação não Disponível para a Data Selecionada!" />
             </Border>
+
         </Grid>
     </Grid>
 </Window>
