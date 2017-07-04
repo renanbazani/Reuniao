@@ -73,23 +73,26 @@ namespace Reuniao.DataBase
             }
         }
 
-        public void Adicionar(Reuniao objReuniao)
+        public Reuniao Adicionar(Reuniao objReuniao)
         {
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
 
-                var chaveSeq = new SQLiteCommand("select ifnull(max(chave) + 1, 1) from reuniao", conn).ExecuteScalar();
-                var proxSeq = new SQLiteCommand(string.Format("select ifnull(max(Sequencia) + 1, 1) from reuniao where DataReuniao = date('{0}')", ((DateTime)objReuniao.DataReuniao).ToString("yyyy-MM-dd")), conn).ExecuteScalar();
+                objReuniao.Chave = new SQLiteCommand("select ifnull(max(chave) + 1, 1) from reuniao", conn).ExecuteScalar().ToString();
+                objReuniao.Sequencia = int.Parse(new SQLiteCommand(string.Format("select ifnull(max(Sequencia) + 1, 1) from reuniao where DataReuniao = date('{0}')", ((DateTime)objReuniao.DataReuniao).ToString("yyyy-MM-dd")), conn).ExecuteScalar().ToString());
 
                 new SQLiteCommand(string.Format("insert into reuniao values ({0}, {1}, '{2}', '{3}', '{4}', 'false', '{5}')",
-                                                chaveSeq.ToString(),
-                                                proxSeq.ToString(),
+                                                objReuniao.Chave,
+                                                objReuniao.Sequencia,
                                                 objReuniao.Tipo,
                                                 objReuniao.Valor,
                                                 ((DateTime)objReuniao.DataReuniao).ToString("yyyy-MM-dd"),
                                                 objReuniao.Descricao), conn).ExecuteNonQuery();
+
+                 
+                return objReuniao;
             }
             finally
             {

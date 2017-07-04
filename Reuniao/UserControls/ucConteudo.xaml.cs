@@ -129,13 +129,16 @@ namespace Reuniao
                 if (!File.Exists(pathArquivo))
                 {
                     videoThumb.Visibility = System.Windows.Visibility.Collapsed;
+                    videoWatermark.Visibility = System.Windows.Visibility.Collapsed;
+
+                    gridVideoThumb.Visibility = System.Windows.Visibility.Visible;
                     videoThumbErro.Visibility = System.Windows.Visibility.Visible;
 
                     this.conteudoIndisponivel = true;
                     return;
                 }
 
-                this.ToolTip = nome;
+                this.ToolTip = this.Conteudo.Descricao;
 
                 if (this.ConteudoPrincipal)
                 {
@@ -174,7 +177,7 @@ namespace Reuniao
                     return;
                 }
 
-                this.ToolTip = nome;
+                this.ToolTip = this.Conteudo.Descricao;
 
                 if (this.ConteudoPrincipal)
                 {
@@ -202,7 +205,17 @@ namespace Reuniao
                     return;
                 }
 
-                ibImagem.Source = new BitmapImage(new Uri(pathArquivo));
+                this.ToolTip = this.Conteudo.Descricao;
+
+                //Armazena a Imagem em Memória para que o Sistema permita que se apague ela depois
+                BitmapImage biImagem = new BitmapImage();
+                biImagem.BeginInit();
+                biImagem.CacheOption = BitmapCacheOption.OnLoad;
+                biImagem.UriSource = new Uri(pathArquivo);
+                biImagem.EndInit();
+                //
+
+                ibImagem.Source = biImagem;
             }
             catch (Exception ex)
             {
@@ -297,18 +310,24 @@ namespace Reuniao
                         break;
                 }
 
-                if (this.Conteudo.Reproduzido)
-                {
-                    this.gridInfoReproduzido.Visibility = Visibility.Visible;
-                    this.miMarcar.Header = "Marcar como 'Pendente'";
-                    this.MouseDoubleClick -= ucConteudo_MouseDoubleClick;
-                }
-
                 this.PopulaCombos();
 
                 //Habilitar ou Desabilitar Botoes de Sequencia
                 miRetrocederSequencia.IsEnabled = (this.Conteudo.Sequencia != 1);
                 miAvancarSequencia.IsEnabled = !(this.Conteudo.UltimoNaSequencia);
+
+                if (this.Conteudo.Reproduzido)
+                {
+                    this.gridInfoReproduzido.Visibility = Visibility.Visible;
+                    this.miMarcar.Header = "Marcar como 'Pendente'";
+                    this.MouseDoubleClick -= ucConteudo_MouseDoubleClick;
+
+                    //Desabilitar Menus
+                    miRetrocederSequencia.IsEnabled = false;
+                    miAvancarSequencia.IsEnabled = false;
+                    miAlterarConteudo.IsEnabled = false;
+                    miExcluirConteudo.IsEnabled = false;
+                }
             }
             catch (Exception ex)
             {

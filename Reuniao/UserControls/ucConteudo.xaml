@@ -55,7 +55,7 @@
         <Border x:Name="gridVideoThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
             <Grid>
                 <Image x:Name="videoThumb" Source="..\Imagens\Thumbs\Video.png" Stretch="Uniform" MaxHeight="200" MaxWidth="200"></Image>
-                <Image x:Name="videoThumbErro" Source="..\Imagens\Thumbs\videoInvalido.png" Stretch="UniformToFill" Visibility="Hidden"/>
+                <Image x:Name="videoThumbErro" Source="..\Imagens\Thumbs\videoInvalido.png" Stretch="Uniform" Visibility="Hidden" />
             </Grid>
         </Border>
         <!-- Video -->
@@ -64,7 +64,7 @@
         <Border x:Name="gridAudioThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
             <Grid >
                 <Image x:Name="audioThumb" Source="..\Imagens\Thumbs\audio.png" Stretch="UniformToFill"></Image>
-                <Image x:Name="audioThumbErro" Source="..\Imagens\Thumbs\audioInvalido.png" Stretch="Uniform" MaxHeight="100" MaxWidth="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
+                <Image x:Name="audioThumbErro" Source="..\Imagens\Thumbs\audioInvalido.png" Stretch="Uniform" Visibility="Hidden" />
                 <MediaElement x:Name="meAudio" Visibility="Hidden" />
             </Grid>
         </Border>

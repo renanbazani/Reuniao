@@ -12,6 +12,8 @@ namespace Reuniao
     {
         #region Propriedades e Atributos
 
+        private DataBase.Reuniao objAtual = null;
+
         #endregion
 
         #region Contrutor Lógico
@@ -104,6 +106,16 @@ namespace Reuniao
             this.GerenciaMenu();
         }
 
+        private void btnConfirmarDescricaoConteudo_Click(object sender, RoutedEventArgs e)
+        {
+            objAtual.Descricao = txtDescricaoConteudo.Text.Trim();
+            new SQLReunioes().Alterar(objAtual);
+
+            lvQuadros.ItemsSource = new SQLReunioes().Listar((DateTime)objAtual.DataReuniao);
+
+            gridDescricaoConteudo.Visibility = Visibility.Hidden;
+        }
+
         private void cbiDataReunioes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -161,10 +173,7 @@ namespace Reuniao
                 {
                     File.Copy(dlg.FileName, string.Format(@"{0}\{1}", Helper.PathVideos, Path.GetFileName(dlg.FileName)), true);
 
-                    //if (MessageBox.Show("Deseja inserir uma ?", "Atenção", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    //    descricao = FileVersionInfo.GetVersionInfo(dlg.FileName).FileDescription;
-
-                    new SQLReunioes().Adicionar(new DataBase.Reuniao()
+                    objAtual = new SQLReunioes().Adicionar(new DataBase.Reuniao()
                     {
                         DataReuniao = dataSelecionada,
                         Tipo = "VIDEO",
@@ -172,6 +181,10 @@ namespace Reuniao
                     });
 
                     lvQuadros.ItemsSource = new SQLReunioes().Listar(dataSelecionada);
+
+                    txtDescricaoConteudo.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    gridDescricaoConteudo.Visibility = Visibility.Visible;
+                    txtDescricaoConteudo.Focus();
                 }
             }
             catch (Exception ex)
@@ -197,7 +210,7 @@ namespace Reuniao
                 {
                     File.Copy(dlg.FileName, string.Format(@"{0}\{1}", Helper.PathAudios, Path.GetFileName(dlg.FileName)), true);
 
-                    new SQLReunioes().Adicionar(new DataBase.Reuniao()
+                    objAtual = new SQLReunioes().Adicionar(new DataBase.Reuniao()
                     {
                         DataReuniao = dataSelecionada,
                         Tipo = "AUDIO",
@@ -205,6 +218,10 @@ namespace Reuniao
                     });
 
                     lvQuadros.ItemsSource = new SQLReunioes().Listar(dataSelecionada);
+
+                    txtDescricaoConteudo.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    gridDescricaoConteudo.Visibility = Visibility.Visible;
+                    txtDescricaoConteudo.Focus();
                 }
             }
             catch (Exception ex)
@@ -230,7 +247,7 @@ namespace Reuniao
                 {
                     File.Copy(dlg.FileName, string.Format(@"{0}\{1}", Helper.PathImagens, Path.GetFileName(dlg.FileName)), true);
 
-                    new SQLReunioes().Adicionar(new DataBase.Reuniao()
+                    objAtual = new SQLReunioes().Adicionar(new DataBase.Reuniao()
                     {
                         DataReuniao = dataSelecionada,
                         Tipo = "IMAGEM",
@@ -238,6 +255,10 @@ namespace Reuniao
                     });
 
                     lvQuadros.ItemsSource = new SQLReunioes().Listar(dataSelecionada);
+
+                    txtDescricaoConteudo.Text = Path.GetFileNameWithoutExtension(dlg.FileName);
+                    gridDescricaoConteudo.Visibility = Visibility.Visible;
+                    txtDescricaoConteudo.Focus();
                 }
             }
             catch (Exception ex)
