@@ -27,8 +27,7 @@
 
         <!-- Cantico -->
         <Grid x:Name="gridCantico" Visibility="Hidden">
-            <Image x:Name="canticoWatermark" Source="..\Imagens\Thumbs\watermark.png" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,35" Opacity="0.4"></Image>
-            <MediaElement x:Name="meCantico" Visibility="Hidden" Stretch="Uniform" />
+             <MediaElement x:Name="meCantico" Visibility="Hidden" Stretch="Uniform" />
         </Grid>
 
         <Border x:Name="gridCanticoThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
@@ -48,7 +47,6 @@
 
         <!-- Video -->
         <Grid x:Name="gridVideo" Visibility="Hidden">
-            <Image x:Name="videoWatermark" Source="..\Imagens\Thumbs\watermark.png" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,35" Opacity="0.4"></Image>
             <MediaElement x:Name="meVideo" Visibility="Hidden" Stretch="Uniform" />
         </Grid>
 
@@ -90,11 +88,14 @@
             <ProgressBar x:Name="pbMedia" VerticalAlignment="Bottom" Height="10" Margin="2" Foreground="#FF1C73BA" BorderBrush="#FF176DB1" Visibility="Collapsed" />
         </Grid>
         <!-- Controle de Midia -->
-
+        
         <!-- Conteudo Reproduzido Info -->
         <Grid x:Name="gridInfoReproduzido" Visibility="Hidden">
             <Image Source="..\Imagens\assistido.png" Stretch="UniformToFill"></Image>
         </Grid>
         <!-- Conteudo Reproduzido Info -->
+
+        <Image x:Name="JWWatermark" Source="..\Imagens\Thumbs\watermark.png" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,35,35" Opacity="0.5" Visibility="Hidden"></Image>
+
     </Grid>
 </UserControl>

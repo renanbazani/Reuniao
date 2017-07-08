@@ -115,6 +115,9 @@ namespace Reuniao
             transmissaoAtiva.WindowStyle = WindowStyle.None;
             transmissaoAtiva.ResizeMode = ResizeMode.NoResize;
 
+            if (tipoConteudo == ConteudoReuniao.VIDEO || tipoConteudo == ConteudoReuniao.CANTICO)
+                Helper.TransmissaoAtiva.UserControlConteudo.JWWatermark.Visibility = Visibility.Visible;
+
             if (janelaInativa)
             {
                 transmissaoAtiva.Left = 0;

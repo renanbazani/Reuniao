@@ -93,7 +93,8 @@ namespace Reuniao
 
                 string pathArquivo = string.Format(@"{0}\{1}.mp4", Helper.PathCanticos, numero);
 
-                this.ToolTip = string.Format("Cântico {0}", numero);
+                if (!this.ConteudoPrincipal && numero != 0)
+                    this.ToolTip = string.Format("Cântico {0}", numero);
 
                 if (this.ConteudoPrincipal)
                 {
@@ -129,8 +130,6 @@ namespace Reuniao
                 if (!File.Exists(pathArquivo))
                 {
                     videoThumb.Visibility = System.Windows.Visibility.Collapsed;
-                    videoWatermark.Visibility = System.Windows.Visibility.Collapsed;
-
                     gridVideoThumb.Visibility = System.Windows.Visibility.Visible;
                     videoThumbErro.Visibility = System.Windows.Visibility.Visible;
 
@@ -138,7 +137,8 @@ namespace Reuniao
                     return;
                 }
 
-                this.ToolTip = this.Conteudo.Descricao;
+                if (!this.ConteudoPrincipal && !string.IsNullOrEmpty(this.Conteudo.Descricao))
+                    this.ToolTip = this.Conteudo.Descricao;
 
                 if (this.ConteudoPrincipal)
                 {
@@ -177,7 +177,8 @@ namespace Reuniao
                     return;
                 }
 
-                this.ToolTip = this.Conteudo.Descricao;
+                if (!this.ConteudoPrincipal && !string.IsNullOrEmpty(this.Conteudo.Descricao))
+                    this.ToolTip = this.Conteudo.Descricao;
 
                 if (this.ConteudoPrincipal)
                 {
@@ -205,7 +206,8 @@ namespace Reuniao
                     return;
                 }
 
-                this.ToolTip = this.Conteudo.Descricao;
+                if (!this.ConteudoPrincipal && !string.IsNullOrEmpty(this.Conteudo.Descricao))
+                    this.ToolTip = this.Conteudo.Descricao;
 
                 //Armazena a Imagem em Memória para que o Sistema permita que se apague ela depois
                 BitmapImage biImagem = new BitmapImage();
@@ -598,6 +600,9 @@ namespace Reuniao
                 pbMedia.Maximum = ts.TotalSeconds;
                 pbMedia.SmallChange = 1;
                 pbMedia.LargeChange = Math.Min(10, ts.Seconds / 10);
+                
+                if (this.TipoConteudo == ConteudoReuniao.VIDEO || this.TipoConteudo == ConteudoReuniao.CANTICO)
+                    Helper.TransmissaoAtiva.UserControlConteudo.JWWatermark.Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
