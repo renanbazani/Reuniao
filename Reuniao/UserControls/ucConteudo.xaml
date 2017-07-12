@@ -14,8 +14,9 @@
                 <MenuItem x:Name="miRetrocederSequencia" Header="Retroceder Sequência" Click="miRetrocederSequencia_Click"/>
                 <MenuItem x:Name="miAvancarSequencia" Header="Avançar Sequência" Click="miAvancarSequencia_Click"/>
                 <Separator />
-                <MenuItem x:Name="miAlterarConteudo" Header="Alterar" Click="miAlterarConteudo_Click"/>
-                <MenuItem x:Name="miExcluirConteudo" Header="Excluir" Click="miExcluirConteudo_Click"/>
+                <MenuItem x:Name="miAlterarDescricao" Header="Alterar Descrição" Click="miAlterarDescricao_Click"/>
+                <MenuItem x:Name="miAlterarConteudo" Header="Alterar Conteúdo" Click="miAlterarConteudo_Click"/>
+                <MenuItem x:Name="miExcluirConteudo" Header="Excluir Conteúdo" Click="miExcluirConteudo_Click"/>
             </ContextMenu>
         </Grid.ContextMenu>
 
@@ -27,7 +28,7 @@
 
         <!-- Cantico -->
         <Grid x:Name="gridCantico" Visibility="Hidden">
-             <MediaElement x:Name="meCantico" Visibility="Hidden" Stretch="Uniform" />
+            <MediaElement x:Name="meCantico" Visibility="Hidden" Stretch="Uniform" />
         </Grid>
 
         <Border x:Name="gridCanticoThumb" BorderBrush="LightGray" BorderThickness="1" Visibility="Hidden">
@@ -88,7 +89,7 @@
             <ProgressBar x:Name="pbMedia" VerticalAlignment="Bottom" Height="10" Margin="2" Foreground="#FF1C73BA" BorderBrush="#FF176DB1" Visibility="Collapsed" />
         </Grid>
         <!-- Controle de Midia -->
-        
+
         <!-- Conteudo Reproduzido Info -->
         <Grid x:Name="gridInfoReproduzido" Visibility="Hidden">
             <Image Source="..\Imagens\assistido.png" Stretch="UniformToFill"></Image>

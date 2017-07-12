@@ -63,6 +63,7 @@ namespace Reuniao
         public event EventHandler AvancarSequencia;
         public event EventHandler RetrocederSequencia;
         public event EventHandler ConteudoAtualizado;
+        public event EventHandler AlterarDescricaoConteudo;
 
         #endregion
 
@@ -314,9 +315,10 @@ namespace Reuniao
 
                 this.PopulaCombos();
 
-                //Habilitar ou Desabilitar Botoes de Sequencia
+                //Habilitar ou Desabilitar Botoes do Menu de Conteudo
                 miRetrocederSequencia.IsEnabled = (this.Conteudo.Sequencia != 1);
                 miAvancarSequencia.IsEnabled = !(this.Conteudo.UltimoNaSequencia);
+                miAlterarDescricao.IsEnabled = (this.TipoConteudo != ConteudoReuniao.CANTICO);
 
                 if (this.Conteudo.Reproduzido)
                 {
@@ -329,6 +331,7 @@ namespace Reuniao
                     miAvancarSequencia.IsEnabled = false;
                     miAlterarConteudo.IsEnabled = false;
                     miExcluirConteudo.IsEnabled = false;
+                    miAlterarDescricao.IsEnabled = false;
                 }
             }
             catch (Exception ex)
@@ -463,6 +466,12 @@ namespace Reuniao
         {
             if (this.AvancarSequencia != null)
                 this.AvancarSequencia(this, e);
+        }
+
+        private void miAlterarDescricao_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.AlterarDescricaoConteudo != null)
+                this.AlterarDescricaoConteudo(this, e);
         }
 
         private void cbCantico_SelectionChanged(object sender, SelectionChangedEventArgs e)

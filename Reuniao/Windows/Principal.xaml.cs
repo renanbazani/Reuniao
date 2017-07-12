@@ -420,6 +420,22 @@ namespace Reuniao
                 MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
+        private void ucConteudo_AlterarDescricaoConteudo(object sender, EventArgs e)
+        {
+            try
+            {
+                objAtual = (sender as ucConteudo).Conteudo;
+                txtDescricaoConteudo.Text = objAtual.Descricao;                
+                gridDescricaoConteudo.Visibility = Visibility.Visible;
+                txtDescricaoConteudo.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
 
         private void miSobre_Click(object sender, RoutedEventArgs e)
         {
